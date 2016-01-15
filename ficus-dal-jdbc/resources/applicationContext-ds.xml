@@ -23,15 +23,15 @@
   <!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"
     /> -->
   <!-- <property name="url" -->
-  <!-- value="jdbc:oracle:thin:@10.16.67.195:1601/lmssit3" /> -->
-  <!-- <property name="username" value="OMS2C" /> -->
-  <!-- <property name="password" value="Oms2c#sit3" /> -->
+  <!-- value="jdbc:oracle:thin:@*" /> -->
+  <!-- <property name="username" value="*" /> -->
+  <!-- <property name="password" value="*" /> -->
   <!-- <property name="defaultAutoCommit" value="false" /> -->
   <!-- </bean> -->
 
   <!-- <bean id="dataSource_1" class="org.apache.tomcat.jdbc.pool.DataSource"> -->
   <!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-  <!-- <property name="url" value="jdbc:mysql://127.0.0.1:3306/pango" /> -->
+  <!-- <property name="url" value="jdbc:mysql://127.0.0.1:3306/*" /> -->
   <!-- <property name="username" value="root" /> -->
   <!-- <property name="password" value="123456" /> -->
   <!-- <property name="defaultAutoCommit" value="false" /> -->
@@ -39,7 +39,7 @@
 
   <!-- <bean id="dataSource_2" class="org.apache.tomcat.jdbc.pool.DataSource"> -->
   <!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-  <!-- <property name="url" value="jdbc:mysql://127.0.0.1:3306/pango2" /> -->
+  <!-- <property name="url" value="jdbc:mysql://127.0.0.1:3306/*" /> -->
   <!-- <property name="username" value="root" /> -->
   <!-- <property name="password" value="123456" /> -->
   <!-- <property name="defaultAutoCommit" value="false" /> -->
