@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:cache="http://www.springframework.org/schema/cache"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/cache
+    http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+<!--   <cache:annotation-driven /> -->
+
+  <tx:annotation-driven />
+
+  <context:annotation-config
+    transaction-manager="transactionManager" />
+
+  <context:component-scan base-package="com.qiongsong" />
+
+  <!--默认缓存支持
+  <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+    <property name="caches">
+      <set>
+        <bean
+          class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
+          <property name="name" value="default" />
+        </bean>
+      </set>
+    </property>
+  </bean>
+  -->
+
+  <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
+    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+    <property name="url"
+      value="jdbc:oracle:thin:@10.16.67.195:1601/lmssit3" />
+    <property name="username" value="OMS2C" />
+    <property name="password" value="Oms2c#sit3" />
+    <property name="defaultAutoCommit" value="false" />
+  </bean>
+  <!-- <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property
+    name="url" value="jdbc:mysql://127.0.0.1:3306/pango" /> <property name="username"
+    value="root" /> <property name="password" value="123456" /> <property name="defaultAutoCommit"
+    value="false" /> </bean> -->
+  <!-- <bean id="dataSource_2" class="org.apache.tomcat.jdbc.pool.DataSource"> -->
+  <!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+  <!-- <property name="url" value="jdbc:mysql://127.0.0.1:3306/pango2" /> -->
+  <!-- <property name="username" value="root" /> -->
+  <!-- <property name="password" value="123456" /> -->
+  <!-- <property name="defaultAutoCommit" value="false" /> -->
+  <!-- </bean> -->
+
+  <bean id="simpleDataSourceFactory"
+    class="com.qiongsong.ficus.dal.jdbc.datasource.support.SimpleDataSourceFactory">
+    <property name="dataSource" ref="dataSource" />
+  </bean>
+
+  <bean id="dataAccessFactory"
+    class="com.qiongsong.ficus.dal.jdbc.access.DataAccessFactoryAdapter">
+    <constructor-arg ref="simpleDataSourceFactory" />
+  </bean>
+
+  <bean id="transactionManager"
+    class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource" />
+  </bean>
+
+  <bean id="nameHandler"
+    class="com.qiongsong.ficus.dal.support.handler.DefaultNameHandler" />
+  <bean id="dialect" class="com.qiongsong.ficus.dal.dialect.OracleDialect" />
+  <!-- <bean id="dialect" class="com.qiongsong.ficus.dal.dialect.MySQLDialect"
+    /> -->
+  <bean id="jdbcDao" class="com.qiongsong.ficus.dal.jdbc.JdbcDaoImpl">
+    <property name="dataAccessFactory" ref="dataAccessFactory" />
+    <property name="dialect" ref="dialect" />
+    <property name="nameHandler" ref="nameHandler" />
+    <property name="sqlFactory" ref="sqlFactory" />
+  </bean>
+
+  <bean id="sqlFactory" class="com.qiongsong.ficus.dal.jdbc.IbatisSqlFactoryBean">
+    <property name="sqlLocations">
+      <list>
+        <value>order-sql.xml</value>
+        <value>user-sql.xml</value>
+      </list>
+    </property>
+  </bean>
+
+</beans>

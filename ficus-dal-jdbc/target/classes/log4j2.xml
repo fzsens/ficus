@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Appenders>
+    <Console name="STDOUT" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n" />
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="org.apache.log4j.xml" level="info" />
+
+<!--     <Logger name="org.springframework.jdbc.core.StatementCreatorUtils" -->
+<!--       level="TRACE" additivity="false"> -->
+<!--       <Appender-Ref ref="STDOUT" /> -->
+<!--     </Logger> -->
+
+<!--     <Logger name="org.springframework.jdbc.core.JdbcTemplate" -->
+<!--       level="TRACE" additivity="false"> -->
+<!--       <Appender-Ref ref="STDOUT" /> -->
+<!--     </Logger> -->
+
+<!--     <Logger name="com.qiongsong.ficus.dal.jdbc.access.DataAccessImpl" -->
+<!--       level="TRACE" additivity="false"> -->
+<!--       <Appender-Ref ref="STDOUT" /> -->
+<!--     </Logger> -->
+
+    <Root level="info">
+      <AppenderRef ref="STDOUT" />
+    </Root>
+  </Loggers>
+</Configuration>
